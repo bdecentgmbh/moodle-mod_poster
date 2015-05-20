@@ -44,6 +44,16 @@ if ($edit !== null and confirm_sesskey() and $PAGE->user_allowed_editing()) {
     redirect($PAGE->url);
 }
 
+// Trigger module viewed event.
+$event = \mod_poster\event\course_module_viewed::create(array(
+   'objectid' => $poster->id,
+   'context' => $PAGE->context,
+));
+$event->add_record_snapshot('course_modules', $cm);
+$event->add_record_snapshot('course', $course);
+$event->add_record_snapshot('poster', $poster);
+$event->trigger();
+
 // Define the custom block regions we want to use at the poster view page.
 // Region names are limited to 16 characters.
 $PAGE->blocks->add_region('mod_poster-pre', true);
