@@ -135,3 +135,16 @@ function poster_extend_settings_navigation(settings_navigation $settingsnav, nav
         $node->add($editstring, $url, navigation_node::TYPE_SETTING);
     }
 }
+
+/**
+ * Return the page type patterns that can be used by blocks
+ *
+ * @param string $pagetype Current page type
+ * @param stdClass $parentcontext Block's parent context
+ * @param stdClass $currentcontext Current context of block
+ */
+function poster_page_type_list($pagetype, $parentcontext, $currentcontext) {
+    return array(
+        'mod-poster-view' => get_string('page-mod-poster-view', 'mod_poster'),
+    );
+}

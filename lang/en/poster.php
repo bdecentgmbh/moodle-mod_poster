@@ -25,6 +25,7 @@ defined('MOODLE_INTERNAL') || die();
 
 $string['modulename'] = 'Poster';
 $string['modulenameplural'] = 'Posters';
+$string['page-mod-poster-view'] = 'Poster module main page';
 $string['pluginadministration'] = 'Poster administration';
 $string['pluginname'] = 'Poster';
 $string['poster:addinstance'] = 'Add a new poster';
