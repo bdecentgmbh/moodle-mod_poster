@@ -16,12 +16,24 @@
 
 /**
  * @package     mod_poster
- * @category    string
+ * @category    access
  * @copyright   2015 David Mudrak <david@moodle.com>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['modulename'] = 'Poster';
-$string['poster:addinstance'] = 'Add a new poster';
+$capabilities = array(
+
+    // Ability to add instance of the module to the course.
+    'mod/poster:addinstance' => array(
+        'riskbitmask' => RISK_XSS,
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_COURSE,
+        'archetypes' => array(
+            'editingteacher' => CAP_ALLOW,
+            'manager' => CAP_ALLOW
+        ),
+        'clonepermissionsfrom' => 'moodle/course:manageactivities'
+    ),
+);
