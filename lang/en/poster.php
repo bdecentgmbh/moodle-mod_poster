@@ -28,6 +28,7 @@ $string['modulenameplural'] = 'Posters';
 $string['pluginadministration'] = 'Poster administration';
 $string['pluginname'] = 'Poster';
 $string['poster:addinstance'] = 'Add a new poster';
+$string['poster:view'] = 'View poster';
 $string['postername'] = 'Name';
 $string['showdescriptionview'] = 'Display description on view page';
 $string['showdescriptionview_help'] = 'If enabled, the description above will be displayed on the poster page.';
