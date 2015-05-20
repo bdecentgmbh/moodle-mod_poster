@@ -23,6 +23,7 @@
  */
 
 require(__DIR__.'/../../config.php');
+require_once($CFG->libdir.'/completionlib.php');
 
 $cmid = required_param('id', PARAM_INT);
 $edit = optional_param('edit', null, PARAM_BOOL);
@@ -53,6 +54,10 @@ $event->add_record_snapshot('course_modules', $cm);
 $event->add_record_snapshot('course', $course);
 $event->add_record_snapshot('poster', $poster);
 $event->trigger();
+
+// Mark the module instance as viewed by the current user.
+$completion = new completion_info($course);
+$completion->set_module_viewed($cm);
 
 // Define the custom block regions we want to use at the poster view page.
 // Region names are limited to 16 characters.

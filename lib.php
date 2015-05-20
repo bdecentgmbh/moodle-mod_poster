@@ -45,7 +45,7 @@ function poster_supports($feature) {
     case FEATURE_BACKUP_MOODLE2:
         return false;
     case FEATURE_COMPLETION_TRACKS_VIEWS:
-        return false;
+        return true;
     case FEATURE_SHOW_DESCRIPTION:
         return true;
     default:
