@@ -56,7 +56,12 @@ class mod_poster_mod_form extends moodleform_mod {
         $mform->addHelpButton('shownameview', 'shownameview', 'mod_poster');
 
         // Add the instruction/description field.
-        $this->add_intro_editor();
+        if ($CFG->version >= 2015051100) {
+            // Moodle 2.9.0 and higher use the new API.
+            $this->standard_intro_elements();
+        } else {
+            $this->add_intro_editor();
+        }
 
         // Add the show description at the view page field.
         $mform->addElement('advcheckbox', 'showdescriptionview', get_string('showdescriptionview', 'mod_poster'));
