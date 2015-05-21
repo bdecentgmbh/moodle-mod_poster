@@ -3,8 +3,17 @@ Moodle Poster activity module
 
 Poster is a resource activity module for Moodle. It allows teachers to create a page for their students. What makes this module
 unique is that the contents of the poster page is composed of Moodle blocks (such as HTML blocks, Calendar block, Latest news block
-etc.). It provides yet another place within the course where blocks can be put without polluting the course front page. The module
-natively supports responsive layout in bootstrap2 and bootstrap3 based themes.
+etc.). It provides yet another place within the course where blocks can be put without polluting the course front page.
+
+Motivation
+----------
+
+There are many useful blocks available for Moodle. Typically, they can be only added to the sides of the Moodle pages, or to the
+user's dashboard page (also known as My home page). Sometimes, you may want to keep your course main page quite clean, not cluttered
+with blocks on both sides. In such case, you can put useful blocks into a separate Poster page.
+
+The overall concept is somewhat similar to how pages are created in Mahara - but it is typically the teacher in Moodle who creates
+the Poster for students to view.
 
 Usage
 -----
@@ -13,9 +22,13 @@ To use the module, you should understand how Moodle sticky blocks work. See [Blo
 settings](https://docs.moodle.org/en/Block_settings) page for more details.
 
 1. Add the module instance into the course.
-2. Turn editing mode on.
-3. Add the Moodle blocks you want to display on the poster and configure them so that they are displayed in the context of the
-   poster, on page type `mod-poster-view`, inside region `mod_poster-pre` or `mod_poster-post`.
+2. Keep the turn editing mode on.
+3. Add the Moodle blocks you want to display on the poster.
+4. Click the icon to configure the block. Set the block instance so that it is displayed in the context of the
+   poster, on page type _Poster module main page_ (`mod-poster-view`), inside the region `mod_poster-pre` or `mod_poster-post`.
+5. Alternatively, use the drag and drop feature to move the block to the regions at the poster content area.
+6. Note that some blocks must be first added to the course main page first, configured to be displayed at any page and then
+   configured again to be displayed at the poster main page only (this is how block positioning works in Moodle generally).
 
 The poster can be used as for example:
 
@@ -31,6 +44,8 @@ defines regions where plugins can be added to. However in special cases, such as
 block regions.  Within the context of the Poster module instance, when displaying its view.php page, two extra block regions are
 defined - `mod_poster-pre` and `mod_poster-post`. The Poster module itself is just a tiny wrapper for displaying these two regions
 as its content. Simple and clever.
+
+The module natively supports responsive layout in bootstrap based themes (both 2.x and 3.x versions).
 
 Author
 ------
