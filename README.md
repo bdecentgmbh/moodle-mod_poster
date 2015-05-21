@@ -22,7 +22,7 @@ To use the module, you should understand how Moodle sticky blocks work. See [Blo
 settings](https://docs.moodle.org/en/Block_settings) page for more details.
 
 1. Add the module instance into the course.
-2. Keep the turn editing mode on.
+2. Keep the editing mode on.
 3. Add the Moodle blocks you want to display on the poster.
 4. Click the icon to configure the block. Set the block instance so that it is displayed in the context of the
    poster, on page type _Poster module main page_ (`mod-poster-view`), inside the region `mod_poster-pre` or `mod_poster-post`.
