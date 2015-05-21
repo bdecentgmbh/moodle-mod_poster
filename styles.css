@@ -1,0 +1,3 @@
+#page-mod-poster-view #mod_poster-content .block[data-instanceid][data-dockable] .moveto {
+    display: none;
+}
