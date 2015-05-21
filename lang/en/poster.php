@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Strings of the Poster activity module are defined here.
+ *
  * @package     mod_poster
  * @category    string
  * @copyright   2015 David Mudrak <david@moodle.com>

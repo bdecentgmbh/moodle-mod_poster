@@ -34,22 +34,22 @@ defined('MOODLE_INTERNAL') || die();
 function poster_supports($feature) {
 
     switch($feature) {
-    case FEATURE_MOD_ARCHETYPE:
-        return MOD_ARCHETYPE_RESOURCE;
-    case FEATURE_GRADE_HAS_GRADE:
-        return false;
-    case FEATURE_GROUPS:
-        return false;
-    case FEATURE_MOD_INTRO:
-        return true;
-    case FEATURE_BACKUP_MOODLE2:
-        return false;
-    case FEATURE_COMPLETION_TRACKS_VIEWS:
-        return true;
-    case FEATURE_SHOW_DESCRIPTION:
-        return true;
-    default:
-        return null;
+        case FEATURE_MOD_ARCHETYPE:
+            return MOD_ARCHETYPE_RESOURCE;
+        case FEATURE_GRADE_HAS_GRADE:
+            return false;
+        case FEATURE_GROUPS:
+            return false;
+        case FEATURE_MOD_INTRO:
+            return true;
+        case FEATURE_BACKUP_MOODLE2:
+            return false;
+        case FEATURE_COMPLETION_TRACKS_VIEWS:
+            return true;
+        case FEATURE_SHOW_DESCRIPTION:
+            return true;
+        default:
+            return null;
     }
 }
 
@@ -115,7 +115,7 @@ function poster_delete_instance($id) {
  * Adds items into the poster administration block
  *
  * @param settings_navigation $settingsnav The settings navigation object
- * @param navigation_node $posternode The node to add module settings to
+ * @param navigation_node $node The node to add module settings to
  */
 function poster_extend_settings_navigation(settings_navigation $settingsnav, navigation_node $node) {
     global $PAGE;

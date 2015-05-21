@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Poster instance settings form is defined here.
+ *
  * @package     mod_poster
  * @copyright   2015 David Mudrak <david@moodle.com>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -26,6 +28,9 @@ require_once($CFG->dirroot.'/course/moodleform_mod.php');
 
 /**
  * Defines the poster instance settings form
+ *
+ * @copyright 2015 David Mudrak <david@moodle.com>
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class mod_poster_mod_form extends moodleform_mod {
 
@@ -41,7 +46,7 @@ class mod_poster_mod_form extends moodleform_mod {
         $mform->addElement('header', 'general', get_string('general', 'core_form'));
 
         // Add the poster name field.
-        $mform->addElement('text', 'name', get_string('postername', 'mod_poster'), array('size'=>'64'));
+        $mform->addElement('text', 'name', get_string('postername', 'mod_poster'), array('size' => '64'));
         $mform->setType('name', PARAM_TEXT);
         $mform->addRule('name', null, 'required', null, 'client');
         $mform->addRule('name', get_string('maximumchars', 'core', 255), 'maxlength', 255, 'client');

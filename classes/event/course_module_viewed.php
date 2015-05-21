@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Provides the course_module_viewed class.
+ *
  * @package     mod_poster
  * @category    event
  * @copyright   2015 David Mudrak <david@moodle.com>

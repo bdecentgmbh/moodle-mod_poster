@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Class mod_poster_renderer is defined here.
+ *
  * @package     mod_poster
  * @category    output
  * @copyright   2015 David Mudrak <david@moodle.com>
