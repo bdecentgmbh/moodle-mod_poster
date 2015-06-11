@@ -26,6 +26,12 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['modulename'] = 'Poster';
+$string['modulename_help'] = 'The poster module enables a teacher to make a page out of blocks (such as the HTML block, comments, calendar or RSS feed block), dragging and dropping them to the preferred location.
+
+You can use the poster
+
+* As a space for your students to present results of their work.
+* As a course dashboard, collating useful elements for students on a single page and keeping the main course page clean and clear of side blocks.';
 $string['modulenameplural'] = 'Posters';
 $string['page-mod-poster-view'] = 'Poster module main page';
 $string['pluginadministration'] = 'Poster administration';
