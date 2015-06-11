@@ -1,6 +1,10 @@
 CHANGES
 =======
 
+### v2 ###
+
+* Fixed the missing module help string (displayed when adding the poster into the course).
+
 ### v1 ###
 
 * Added support for backup & restore.
