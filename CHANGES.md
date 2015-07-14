@@ -1,6 +1,10 @@
 CHANGES
 =======
 
+### v3 ###
+
+* Fixed the required Moodle 2.7 version, credit goes to Howard Miller for the report.
+
 ### v2 ###
 
 * Fixed the missing module help string (displayed when adding the poster into the course).
