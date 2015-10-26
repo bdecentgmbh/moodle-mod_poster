@@ -1,6 +1,12 @@
 CHANGES
 =======
 
+### v4 ###
+
+* Added behat tests for the main features (adding instance, adding contents)
+* Checked compatibility with Moodle 3.0 version
+* Switching over to the stable maturity level
+
 ### v3 ###
 
 * Fixed the required Moodle 2.7 version, credit goes to Howard Miller for the report.
