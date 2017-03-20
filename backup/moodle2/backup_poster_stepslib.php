@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Provides the backup_poster_activity_structure_step class.
+ *
  * @package     mod_poster
  * @category    backup
  * @copyright   2015 David Mudrak <david@moodle.com>
