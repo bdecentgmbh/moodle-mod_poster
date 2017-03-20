@@ -25,7 +25,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'mod_poster';
-$plugin->release = 'v4';
-$plugin->version = 2015102600;
+$plugin->release = '4.0.1';
+$plugin->version = 2015102601;
 $plugin->requires = 2014051200;
 $plugin->maturity = MATURITY_STABLE;
