@@ -1,6 +1,16 @@
 CHANGES
 =======
 
+### 5.0.0 ###
+
+* Improved the styling of the poster editing page
+* Tested with Moodle 3.2 and 3.3 under Boost, Clean and More themes
+
+### 4.0.1 ###
+
+* Added travis-ci support
+* Coding style fixes
+
 ### v4 ###
 
 * Added behat tests for the main features (adding instance, adding contents)
