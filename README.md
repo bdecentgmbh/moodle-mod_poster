@@ -1,6 +1,8 @@
 Moodle Poster activity module
 =============================
 
+[![Build status](https://travis-ci.org/mudrd8mz/moodle-mod_poster.svg?branch=master)](https://travis-ci.org/mudrd8mz/moodle-mod_poster)
+
 Poster is a resource activity module for Moodle. It allows teachers to create a page for their students. What makes this module
 unique is that the contents of the poster page is composed of Moodle blocks (such as HTML blocks, Calendar block, Latest news block
 etc.). It provides yet another place within the course where blocks can be put without polluting the course front page.
