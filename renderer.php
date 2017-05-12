@@ -43,6 +43,7 @@ class mod_poster_renderer extends plugin_renderer_base {
 
         if ($this->page->user_allowed_editing()) {
             $this->page->set_button($this->edit_button($this->page->url));
+            $this->page->blocks->set_default_region('mod_poster-pre');
         }
 
         $out = $this->header();
@@ -143,4 +144,5 @@ class mod_poster_renderer extends plugin_renderer_base {
 
         return $out;
     }
+
 }
