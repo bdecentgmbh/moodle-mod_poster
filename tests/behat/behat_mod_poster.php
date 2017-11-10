@@ -18,7 +18,7 @@
  * Provide the {@link behat_mod_poster} class.
  *
  * @package     mod_poster
- * @category    behat
+ * @category    test
  * @copyright   2017 David Mudrák <david@moodle.com>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
