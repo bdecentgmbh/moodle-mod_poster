@@ -1,6 +1,6 @@
 @mod @mod_poster
-Feature: Add poster activity
-  In order to have posters in a course
+Feature: Adding poster activity
+  In order to display blocks not only on the course page side bars
   As a teacher
   I need to add poster activity module to a course
 

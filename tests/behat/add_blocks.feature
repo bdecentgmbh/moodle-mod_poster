@@ -1,5 +1,5 @@
 @mod @mod_poster
-Feature: Add poster activity
+Feature: Adding blocks to the poster page
   In order to have some contents displayed at a poster page
   As a teacher
   I need to add blocks to the regions provided by the poster view page
