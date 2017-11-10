@@ -1,5 +1,8 @@
-CHANGES
-=======
+### 5.1.0 ###
+
+* In editing mode, the "Add a block" drop down selector is now displayed
+  in the Boost based themes, too - making it easier and more intuitive
+  to add blocks to the poster regions.
 
 ### 5.0.0 ###
 
