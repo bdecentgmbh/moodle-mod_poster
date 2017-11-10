@@ -23,7 +23,7 @@ Feature: Add poster activity
       | Name                              | Poster 003                  |
       | Description                       | This is a test poster 003.  |
     And I follow "Poster 003"
-    And I add the "HTML" block
+    And I add the "HTML" poster block
     And I configure the "(new HTML block)" block
     And I set the field "Block title" to "Created in poster context"
     And I set the field "Content" to "This is first HTML block displayed at a poster page"
@@ -42,7 +42,7 @@ Feature: Add poster activity
     And I set the field "Display on page types" to "Poster module main page"
     And I set the field "Region" to "mod_poster-pre"
     And I press "Save changes"
-    And I add the "People" block
+    And I add the "People" poster block
     And I configure the "People" block
     And I set the field "Region" to "mod_poster-post"
     And I press "Save changes"
