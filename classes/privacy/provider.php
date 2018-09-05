@@ -15,17 +15,34 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Provides meta-information about the plugin.
+ * Defines {@link \mod_poster\privacy\provider} class.
  *
  * @package     mod_poster
- * @copyright   2015 David Mudrak <david@moodle.com>
+ * @category    privacy
+ * @copyright   2018 David Mudrák <david@moodle.com>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace mod_poster\privacy;
+
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'mod_poster';
-$plugin->release = '5.1.0';
-$plugin->version = 2018090500;
-$plugin->requires = 2016120500;
-$plugin->maturity = MATURITY_STABLE;
+/**
+ * Privacy API implementation for the Poster plugin.
+ *
+ * @copyright  2018 David Mudrák <david@moodle.com>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class provider implements \core_privacy\local\metadata\null_provider {
+
+    use \core_privacy\local\legacy_polyfill;
+
+    /**
+     * Returns stringid of a text explaining that this plugin stores no personal data.
+     *
+     * @return string
+     */
+    public static function _get_reason() {
+        return 'privacy:metadata';
+    }
+}
