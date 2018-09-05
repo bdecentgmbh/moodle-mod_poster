@@ -1,3 +1,9 @@
+### 5.2.0 ###
+
+* [Privacy API](https://docs.moodle.org/dev/Privacy_API) implemented. The Poster
+  plugin does not store any personal data.
+* Moodle 3.5 added as a supported version.
+
 ### 5.1.0 ###
 
 * In editing mode, the "Add a block" drop down selector is now displayed
