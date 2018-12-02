@@ -1,10 +1,10 @@
 language: php
 
-sudo: true
+sudo: false
 
 addons:
   firefox: "47.0.1"
-  postgresql: "9.3"
+  postgresql: "9.4"
   apt:
     packages:
       - oracle-java8-installer
@@ -20,9 +20,13 @@ php:
 
 env:
  global:
-  - DB=mysqli
+  - DB=pgsql
  matrix:
+  - MOODLE_BRANCH=master
+  - MOODLE_BRANCH=MOODLE_36_STABLE
   - MOODLE_BRANCH=MOODLE_35_STABLE
+  - MOODLE_BRANCH=MOODLE_34_STABLE
+  - MOODLE_BRANCH=MOODLE_33_STABLE
   - MOODLE_BRANCH=MOODLE_32_STABLE
 
 before_install:
