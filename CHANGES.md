@@ -1,3 +1,7 @@
+### 5.2.1 ###
+
+* Behat tests updated to run on Moodle 3.6
+
 ### 5.2.0 ###
 
 * [Privacy API](https://docs.moodle.org/dev/Privacy_API) implemented. The Poster
