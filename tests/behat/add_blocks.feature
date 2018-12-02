@@ -17,7 +17,7 @@ Feature: Adding blocks to the poster page
       | teacher1    | C1        | editingteacher    |
       | student1    | C1        | student           |
     And I log in as "teacher1"
-    And I follow "Course 001"
+    And I am on "Course 001" course homepage
     And I turn editing mode on
     And I add a "Poster" to section "1" and I fill the form with:
       | Name                              | Poster 003                  |
@@ -29,8 +29,7 @@ Feature: Adding blocks to the poster page
     And I set the field "Content" to "This is first HTML block displayed at a poster page"
     And I set the field "Region" to "mod_poster-pre"
     And I press "Save changes"
-    And I am on homepage
-    And I follow "Course 001"
+    And I am on "Course 001" course homepage
     And I add the "HTML" block
     And I configure the "(new HTML block)" block
     And I set the field "config_title" to "Created in course context"
@@ -48,7 +47,7 @@ Feature: Adding blocks to the poster page
     And I press "Save changes"
     And I log out
     When I log in as "student1"
-    And I follow "Course 001"
+    And I am on "Course 001" course homepage
     Then I should not see "This is second HTML block displayed at a poster page"
     And I follow "Poster 003"
     And I should see "This is first HTML block displayed at a poster page" in the "#mod_poster-content-region-pre" "css_element"

@@ -19,7 +19,7 @@ Feature: Adding poster activity
 
   Scenario: Add empty poster to the course with description displayed
     Given I log in as "teacher1"
-    And I follow "Course 001"
+    And I am on "Course 001" course homepage
     And I turn editing mode on
     And I add a "Poster" to section "1" and I fill the form with:
       | Name                              | Poster 001                  |
@@ -27,13 +27,13 @@ Feature: Adding poster activity
       | Display description on view page  | 1                           |
     And I log out
     When I log in as "student1"
-    And I follow "Course 001"
+    And I am on "Course 001" course homepage
     And I follow "Poster 001"
     Then I should see "This is a test poster 001."
 
   Scenario: Add empty poster to the course with description not displayed
     Given I log in as "teacher1"
-    And I follow "Course 001"
+    And I am on "Course 001" course homepage
     And I turn editing mode on
     And I add a "Poster" to section "1" and I fill the form with:
       | Name                              | Poster 002                  |
