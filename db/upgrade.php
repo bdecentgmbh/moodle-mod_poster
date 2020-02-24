@@ -33,8 +33,20 @@ defined('MOODLE_INTERNAL') || die();
  */
 function xmldb_poster_upgrade($oldversion) {
     global $CFG, $DB;
-
     $dbman = $DB->get_manager();
+
+    if ($oldversion < 2019091100) {
+        // Add new fields to poster table.
+        $table = new xmldb_table('poster');
+        $field = new xmldb_field('display');
+        $field->set_attributes(XMLDB_TYPE_INTEGER, '4', XMLDB_UNSIGNED, XMLDB_NOTNULL, null, '0', 'showdescriptionview');
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Poster savepoint reached.
+        upgrade_mod_savepoint(true, 2019091100, 'poster');
+    }
 
     return true;
 }

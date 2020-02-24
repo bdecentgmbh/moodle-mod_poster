@@ -24,7 +24,10 @@
  */
 
 defined('MOODLE_INTERNAL') || die();
-
+$string['displaypage'] = 'Display poster on separate page';
+$string['displayinline'] = 'Display poster on course page';
+$string['display'] = 'Choose where to display the poster contents';
+$string['display_help'] = 'This module allows you to display blocks directly on the course page or in a separate page.';
 $string['modulename'] = 'Poster';
 $string['modulename_help'] = 'The poster module enables a teacher to make a page out of blocks (such as the HTML block, comments, calendar or RSS feed block), dragging and dropping them to the preferred location.
 

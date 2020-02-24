@@ -11,3 +11,7 @@
     margin-bottom: 5px;
     min-height: 10em;
 }
+.section .poster .mod-indent-outer {
+    padding-left: 24px;
+    display: block;
+}
