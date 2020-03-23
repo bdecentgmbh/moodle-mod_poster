@@ -36,7 +36,7 @@ function xmldb_poster_upgrade($oldversion) {
     $dbman = $DB->get_manager();
 
     if ($oldversion < 2019091100) {
-        // Add new fields to poster table.
+        // Add new field to poster table.
         $table = new xmldb_table('poster');
         $field = new xmldb_field('display');
         $field->set_attributes(XMLDB_TYPE_INTEGER, '4', XMLDB_UNSIGNED, XMLDB_NOTNULL, null, '0', 'showdescriptionview');

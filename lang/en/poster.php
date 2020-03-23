@@ -24,6 +24,7 @@
  */
 
 defined('MOODLE_INTERNAL') || die();
+
 $string['displaypage'] = 'Display poster on separate page';
 $string['displayinline'] = 'Display poster on course page';
 $string['display'] = 'Choose where to display the poster contents';

@@ -114,34 +114,34 @@ class mod_poster_renderer extends plugin_renderer_base {
         $cssclassmain .= $haspre ? '' : ' empty-region-mod_poster-pre';
         $cssclassmain .= $haspost ? '' : ' empty-region-mod_poster-post';
 
-        $out .= \html_writer::start_div($cssclassmain, array('id' => 'mod_poster-content'));
+        $out .= html_writer::start_div($cssclassmain, array('id' => 'mod_poster-content'));
 
         // The bootstrap3 based themes should use the class .row here.
         // But that would have different meaning in the bootstrap2 based themes.
         // However, .row-fluid seems to work in bootstrap3 too so leaving it here for now.
-        $out .= \html_writer::start_div('row-fluid');
+        $out .= html_writer::start_div('row-fluid');
 
         $cssclassgrid = 'col-md-6 span6';
         $cssclasssingle = 'col-md-12 span12';
 
         if ($haspre) {
-            $out .= \html_writer::start_div($haspost ? $cssclassgrid : $cssclasssingle);
-            $out .= \html_writer::start_div('mod_poster-content-region', array('id' => 'mod_poster-content-region-pre'));
+            $out .= html_writer::start_div($haspost ? $cssclassgrid : $cssclasssingle);
+            $out .= html_writer::start_div('mod_poster-content-region', array('id' => 'mod_poster-content-region-pre'));
             $out .= $this->custom_block_region('mod_poster-pre');
-            $out .= \html_writer::end_div();
-            $out .= \html_writer::end_div();
+            $out .= html_writer::end_div();
+            $out .= html_writer::end_div();
         }
 
         if ($haspost) {
-            $out .= \html_writer::start_div($haspre ? $cssclassgrid : $cssclasssingle);
-            $out .= \html_writer::start_div('mod_poster-content-region', array('id' => 'mod_poster-content-region-post'));
+            $out .= html_writer::start_div($haspre ? $cssclassgrid : $cssclasssingle);
+            $out .= html_writer::start_div('mod_poster-content-region', array('id' => 'mod_poster-content-region-post'));
             $out .= $this->custom_block_region('mod_poster-post');
-            $out .= \html_writer::end_div();
-            $out .= \html_writer::end_div();
+            $out .= html_writer::end_div();
+            $out .= html_writer::end_div();
         }
 
-        $out .= \html_writer::end_div();
-        $out .= \html_writer::end_div();
+        $out .= html_writer::end_div();
+        $out .= html_writer::end_div();
 
         return $out;
     }

@@ -1,12 +1,12 @@
 <?php
-// This file is part of mod_datalynx for Moodle - http://moodle.org/
+// This file is part of Moodle - http://moodle.org/
 //
-// It is free software: you can redistribute it and/or modify
+// Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// It is distributed in the hope that it will be useful,
+// Moodle is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
@@ -15,10 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- *
+ * Provides the {@link mod_poster\poster} class.
  * @package mod_poster
- * @copyright based on the work by 2015 David Mudrak <david@moodle.com>{
- *
+ * @copyright based on the work by 2015 David Mudrak <david@moodle.com>
  * @copyright 2019 by Harald, David und Nicklas @devcamp19
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -31,14 +30,15 @@ use completion_info;
 defined('MOODLE_INTERNAL') or die();
 
 /**
- * Class poster
+ * This class retrieves the settings for the poster plugin and
+ * provides basic functions for displaying blocks within a course module or on the course page.
  *
- * @package mod_datalynx
+ * @package mod_poster
  */
 class poster {
 
     /**
-     * @var mixed|object|false fetched from get_record.
+     * @var mixed fetched from get_record.
      */
     protected $settings;
 
@@ -68,7 +68,7 @@ class poster {
     /**
      * Get settings saved in DB for the poster module.
      *
-     * @return false|mixed|object
+     * @return mixed
      */
     public function get_settings(){
         return $this->settings;
@@ -77,7 +77,7 @@ class poster {
     /**
      * Get course settings.
      *
-     * @return false|mixed|object
+     * @return mixed
      */
     public function get_course(){
         return $this->course;

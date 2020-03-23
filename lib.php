@@ -173,10 +173,10 @@ function poster_get_coursemodule_info($cm) {
     $cminfo = new cached_cm_info();
     $cminfo->name = $poster->name;
     if ($poster->display == POSTER_DISPLAY_INLINE) {
-        // prepare poster object to store in customdata
+        // Prepare poster object to store in customdata.
         $fdata = new stdClass();
         $fdata->showdescriptionview = $poster->showdescriptionview;
-        if ($cm->showdescription && strlen(trim($poster->intro))) {
+        if ($cm->showdescription && !html_is_blank($poster->intro)) {
             $fdata->intro = $poster->intro;
             if ($poster->introformat != FORMAT_MOODLE) {
                 $fdata->introformat = $poster->introformat;
@@ -202,7 +202,7 @@ function poster_get_coursemodule_info($cm) {
  */
 function poster_cm_info_dynamic(cm_info $cm) {
     if ($cm->customdata) {
-        // the field 'customdata' is not empty IF AND ONLY IF we display contens inline
+        // The field 'customdata' is not empty IF AND ONLY IF we display contents inline.
         $cm->set_no_view_link();
     }
 }
@@ -214,17 +214,12 @@ function poster_cm_info_dynamic(cm_info $cm) {
  * @param cm_info $cminfo
  */
 function poster_cm_info_view(cm_info $cminfo) {
-    global $PAGE;
     $poster = new poster($cminfo);
 
-    // if ($cm->uservisible && $cm->customdata &&
-    // has_capability('mod/poster:view', $cm->context)) {
     if ($cminfo->uservisible && $cminfo->customdata && has_capability('mod/poster:view', $cminfo->context)) {
         // Restore poster object from customdata.
-        // Note the field 'customdata' is not empty IF AND ONLY IF we display contens inline.
+        // Note the field 'customdata' is not empty IF AND ONLY IF we display contents on course page.
         // Otherwise the content is default.
-        // $poster = $cm->customdata;
-        // $poster->id = (int)$cm->instance;
         $context = context_module::instance($cminfo->id);
         $page = new moodle_page();
         $page->set_context($context);

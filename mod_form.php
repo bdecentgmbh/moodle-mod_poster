@@ -51,16 +51,6 @@ class mod_poster_mod_form extends moodleform_mod {
         $mform->addRule('name', null, 'required', null, 'client');
         $mform->addRule('name', get_string('maximumchars', 'core', 255), 'maxlength', 255, 'client');
 
-        // Add the option to display the content on the course page.
-        $mform->addElement('select', 'display', get_string('display', 'mod_poster'),
-            array(POSTER_DISPLAY_PAGE => get_string('displaypage', 'mod_poster'),
-                POSTER_DISPLAY_INLINE => get_string('displayinline', 'mod_poster')));
-        $mform->addHelpButton('display', 'display', 'mod_poster');
-        if (!$this->courseformat->has_view_page()) {
-            $mform->setConstant('display', POSTER_DISPLAY_PAGE);
-            $mform->hardFreeze('display');
-        }
-
         // Add the show name at the view page field.
         $mform->addElement('advcheckbox', 'shownameview', get_string('shownameview', 'mod_poster'));
         $mform->addHelpButton('shownameview', 'shownameview', 'mod_poster');
@@ -76,6 +66,16 @@ class mod_poster_mod_form extends moodleform_mod {
         // Add the show description at the view page field.
         $mform->addElement('advcheckbox', 'showdescriptionview', get_string('showdescriptionview', 'mod_poster'));
         $mform->addHelpButton('showdescriptionview', 'showdescriptionview', 'mod_poster');
+
+        // Add the option to display the content on the course page.
+        $mform->addElement('select', 'display', get_string('display', 'mod_poster'),
+            array(POSTER_DISPLAY_PAGE => get_string('displaypage', 'mod_poster'),
+                POSTER_DISPLAY_INLINE => get_string('displayinline', 'mod_poster')));
+        $mform->addHelpButton('display', 'display', 'mod_poster');
+        if (!$this->courseformat->has_view_page()) {
+            $mform->setConstant('display', POSTER_DISPLAY_PAGE);
+            $mform->hardFreeze('display');
+        }
 
         // Add standard elements.
         $this->standard_coursemodule_elements();
