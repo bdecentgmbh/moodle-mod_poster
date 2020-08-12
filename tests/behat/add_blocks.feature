@@ -41,8 +41,8 @@ Feature: Adding blocks to the poster page
     And I set the field "Display on page types" to "Poster module main page"
     And I set the field "Region" to "mod_poster-pre"
     And I press "Save changes"
-    And I add the "People" poster block
-    And I configure the "People" block
+    And I add the "Logged in user" poster block
+    And I configure the "Logged in user" block
     And I set the field "Region" to "mod_poster-post"
     And I press "Save changes"
     And I log out
@@ -52,4 +52,4 @@ Feature: Adding blocks to the poster page
     And I follow "Poster 003"
     And I should see "This is first HTML block displayed at a poster page" in the "#mod_poster-content-region-pre" "css_element"
     And I should see "This is second HTML block displayed at a poster page" in the "#mod_poster-content-region-pre" "css_element"
-    And I should see "People" in the "#mod_poster-content-region-post" "css_element"
+    And I should see "Logged in user" in the "#mod_poster-content-region-post" "css_element"
