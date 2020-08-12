@@ -1,3 +1,7 @@
+### 5.2.2 ###
+
+* Behat tests updated and tested on Moodle 3.5 - 3.9
+
 ### 5.2.1 ###
 
 * Behat tests updated to run on Moodle 3.6
