@@ -98,7 +98,7 @@ class mod_poster_renderer extends plugin_renderer_base {
 
         $out = '';
 
-        if ($this->page->user_can_edit_blocks() and $this->page->user_is_editing()) {
+        if ($this->page->user_can_edit_blocks() && $this->page->user_is_editing()) {
             $haspre = true;
             $haspost = true;
         } else {
@@ -106,7 +106,7 @@ class mod_poster_renderer extends plugin_renderer_base {
             $haspost = $this->page->blocks->region_has_content('mod_poster-post', $this);
         }
 
-        if (!$haspre and !$haspost) {
+        if (!$haspre && !$haspost) {
             return $out;
         }
 
