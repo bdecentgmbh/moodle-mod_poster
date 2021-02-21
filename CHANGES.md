@@ -1,3 +1,13 @@
+### 6.0.0 ###
+
+* Improved styling of the "Add a block" widget to distinguish it from other existing
+  blocks on the page.
+* Dropped support for legacy  Bootstrap 2.x grid and CSS classes. Supported are
+  Bootstrap 4.x based themes such as Boost or Classic.
+* Fixed minor coding style issues.
+* Travis-CI replaced with Github actions.
+* Supported Moodle versions 3.9 LTS and higher.
+
 ### 5.2.2 ###
 
 * Behat tests updated and tested on Moodle 3.5 - 3.9
