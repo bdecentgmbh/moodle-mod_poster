@@ -4,6 +4,11 @@
     padding-right: 0;
 }
 
+#page-mod-poster-view #mod_poster-content .block.block_adminblock {
+    background-color: white;
+    border: none;
+}
+
 #page-mod-poster-view.editing #block-region-mod_poster-pre[data-droptarget="1"],
 #page-mod-poster-view.editing #block-region-mod_poster-post[data-droptarget="1"] {
     border: 2px dashed #888;
