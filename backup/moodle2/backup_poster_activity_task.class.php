@@ -48,7 +48,7 @@ class backup_poster_activity_task extends backup_activity_task {
     /**
      * Defines activity specific steps for this task
      *
-     * This method is called from {@link self::build()}.
+     * This method is called from {@see self::build()}.
      */
     protected function define_my_steps() {
         $this->add_step(new backup_poster_activity_structure_step('poster_structure', 'poster.xml'));

@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Defines {@link \mod_poster\privacy\provider} class.
+ * Defines {@see \mod_poster\privacy\provider} class.
  *
  * @package     mod_poster
  * @category    privacy

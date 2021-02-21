@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Provide the {@link behat_mod_poster} class.
+ * Provide the {@see behat_mod_poster} class.
  *
  * @package     mod_poster
  * @category    test
@@ -32,10 +32,10 @@ require_once(__DIR__ . '/../../../../lib/behat/behat_base.php');
  *
  * The poster module changes the default look & behaviour of the "add-block" widget so that it looks like the drop down
  * selector even in Boost based theme (where it would normally be displayed as a link in the flat navigation). As a
- * consequence, we can't use the default step {@link i_add_the_block()} because it would fail in Boost (the expected
+ * consequence, we can't use the default step {@see i_add_the_block()} because it would fail in Boost (the expected
  * link is not in the flat navigation).
  *
- * Instead, we define a custom step as a copy of the {@link behat_blocks::i_add_the_block()} that expects the default
+ * Instead, we define a custom step as a copy of the {@see behat_blocks::i_add_the_block()} that expects the default
  * drop down selector.
  *
  * @copyright 2017 David Mudrak <david@moodle.com>
