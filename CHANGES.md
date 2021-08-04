@@ -1,3 +1,9 @@
+### 6.0.1 ###
+
+* Behat and PHPUnit tests updated and tested on Moodle 3.9 - 3.11.
+* Fixed minor coding style issues reported by phpcs.
+* Git `master` branch renamed to `main`.
+
 ### 6.0.0 ###
 
 * Improved styling of the "Add a block" widget to distinguish it from other existing
