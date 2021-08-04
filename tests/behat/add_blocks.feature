@@ -16,12 +16,12 @@ Feature: Adding blocks to the poster page
       | user        | course    | role              |
       | teacher1    | C1        | editingteacher    |
       | student1    | C1        | student           |
+    And the following "activities" exist:
+      | activity    | name                  | intro                         | course  | idnumber  |
+      | poster      | Poster 003            | This is a test poster 003.    | C1      | poster003 |
     And I log in as "teacher1"
     And I am on "Course 001" course homepage
     And I turn editing mode on
-    And I add a "Poster" to section "1" and I fill the form with:
-      | Name                              | Poster 003                  |
-      | Description                       | This is a test poster 003.  |
     And I follow "Poster 003"
     And I add the "HTML" poster block
     And I configure the "(new HTML block)" block

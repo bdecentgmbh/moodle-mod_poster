@@ -7,37 +7,23 @@ Feature: Adding poster activity
   Background:
     Given the following "users" exist:
       | username    | firstname | lastname  | email                |
-      | teacher1    | Teacher   | 1         | teacher1@example.com |
       | student1    | Student   | 1         | student1@example.com |
     And the following "courses" exist:
       | fullname    | shortname | category  |
       | Course 001  | C1        | 0         |
     And the following "course enrolments" exist:
       | user        | course    | role              |
-      | teacher1    | C1        | editingteacher    |
       | student1    | C1        | student           |
 
-  Scenario: Add empty poster to the course with description displayed
-    Given I log in as "teacher1"
-    And I am on "Course 001" course homepage
-    And I turn editing mode on
-    And I add a "Poster" to section "1" and I fill the form with:
-      | Name                              | Poster 001                  |
-      | Description                       | This is a test poster 001.  |
-      | Display description on view page  | 1                           |
-    And I log out
+  Scenario: Description can be shown or hidden depending on the setting "Display description on view page"
+    Given the following "activities" exist:
+      | activity    | name                  | intro                         | course  | idnumber  | showdescriptionview |
+      | poster      | Poster 001            | This is a test poster 001.    | C1      | poster001 | 1                   |
+      | poster      | Poster 002            | This is a test poster 002.    | C1      | poster002 | 0                   |
     When I log in as "student1"
     And I am on "Course 001" course homepage
     And I follow "Poster 001"
     Then I should see "This is a test poster 001."
-
-  Scenario: Add empty poster to the course with description not displayed
-    Given I log in as "teacher1"
     And I am on "Course 001" course homepage
-    And I turn editing mode on
-    And I add a "Poster" to section "1" and I fill the form with:
-      | Name                              | Poster 002                  |
-      | Description                       | This is a test poster 002.  |
-      | Display description on view page  | 0                           |
-    When I follow "Poster 002"
-    Then I should not see "This is a test poster 002."
+    And I follow "Poster 002"
+    And I should not see "This is a test poster 002."
