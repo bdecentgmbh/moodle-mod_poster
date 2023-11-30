@@ -14,18 +14,30 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
+
+/**
+ * Poster activity testcases.
+ *
+ * @package    mod_poster
+ * @copyright  2021 bdecent gmbh <https://bdecent.de>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+namespace mod_poster;
+
+
 /**
  * Poster module generator tests.
  *
  * @package     mod_poster
  * @category    test
- * @copyright   2021 David Mudrák <david@moodle.com>
+ * @copyright   2021 bdecent gmbh <https://bdecent.de>
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class mod_poster_generator_test extends advanced_testcase {
+class mod_poster_generator_test extends \advanced_testcase {
 
     /**
      * Test {@see mod_poster_generator::create_instance()}.
+     * @covers ::create_instance
      */
     public function test_create_instance() {
         global $DB;

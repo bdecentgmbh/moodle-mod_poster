@@ -23,7 +23,6 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
 
 /**
  * Provides the definition of the backup structure
@@ -44,11 +43,11 @@ class backup_poster_activity_structure_step extends backup_activity_structure_st
     protected function define_structure() {
 
         // Define the poster root element.
-        $poster = new backup_nested_element('poster', array('id'), array(
-            'name', 'intro', 'introformat', 'timecreated', 'timemodified', 'shownameview', 'showdescriptionview'));
+        $poster = new backup_nested_element('poster', ['id'], ['name', 'intro',
+            'introformat', 'timecreated', 'timemodified', 'shownameview', 'showdescriptionview', 'display', ]);
 
         // Define the data source.
-        $poster->set_source_table('poster', array('id' => backup::VAR_ACTIVITYID));
+        $poster->set_source_table('poster', ['id' => backup::VAR_ACTIVITYID]);
 
         // Define file annotations.
         $poster->annotate_files('mod_poster', 'intro', null);

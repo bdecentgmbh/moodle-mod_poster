@@ -25,8 +25,6 @@
 
 namespace mod_poster\privacy;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Privacy API implementation for the Poster plugin.
  *

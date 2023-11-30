@@ -25,7 +25,6 @@
 
 namespace mod_poster\event;
 
-defined('MOODLE_INTERNAL') || die();
 
 /**
  * Class of the mod_poster instances list viewed events.
