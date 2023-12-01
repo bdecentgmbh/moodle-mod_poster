@@ -17,9 +17,11 @@
 /**
  * Define poster class.
  * @package mod_poster
- * @copyright based on the work by 2015 David Mudrak <david@moodle.com>{
+ * @copyright bdecent gmbh 2023 <info@bdecent.de>
+ *             based on the work by 
+ *                 2015 David Mudrak <david@moodle.com> and 
+ *                 2019 Harald, David und Nicklas @devcamp19
  *
- * @copyright 2019 by Harald, David und Nicklas @devcamp19
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
