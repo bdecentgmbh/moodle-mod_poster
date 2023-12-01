@@ -25,8 +25,6 @@
 
 namespace mod_poster\event;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Class of the mod_poster course module viewed events.
  *

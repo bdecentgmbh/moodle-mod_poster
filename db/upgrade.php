@@ -23,8 +23,6 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Performs the poster upgrade steps.
  *
@@ -36,5 +34,17 @@ function xmldb_poster_upgrade($oldversion) {
 
     $dbman = $DB->get_manager();
 
+    if ($oldversion < 2023112701) {
+        // Add new fields to poster table.
+        $table = new xmldb_table('poster');
+        $field = new xmldb_field('display');
+        $field->set_attributes(XMLDB_TYPE_INTEGER, '4', XMLDB_UNSIGNED, XMLDB_NOTNULL, null, '0', 'showdescriptionview');
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Poster savepoint reached.
+        upgrade_mod_savepoint(true, 2023112701, 'poster');
+    }
     return true;
 }

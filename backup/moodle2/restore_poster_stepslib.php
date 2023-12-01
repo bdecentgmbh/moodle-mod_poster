@@ -23,8 +23,6 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Structure step to restore poster activity instance.
  *
@@ -39,7 +37,7 @@ class restore_poster_activity_structure_step extends restore_activity_structure_
      * @return array of restore_path_element
      */
     protected function define_structure() {
-        return $this->prepare_activity_structure(array(new restore_path_element('poster', '/activity/poster')));
+        return $this->prepare_activity_structure([new restore_path_element('poster', '/activity/poster')]);
     }
 
     /**

@@ -54,16 +54,16 @@ class restore_poster_activity_task extends restore_activity_task {
      * @return array of restore_decode_content
      */
     public static function define_decode_contents() {
-        return array(new restore_decode_content('poster', array('intro'), 'poster'));
+        return [new restore_decode_content('poster', ['intro'], 'poster')];
     }
 
     /**
      * Defines the decoding rules for links belonging to the activity to be executed by the link decoder.
      */
     public static function define_decode_rules() {
-        return array(
+        return [
             new restore_decode_rule('POSTERINDEX', '/mod/poster/index.php?id=$1', 'course'),
             new restore_decode_rule('POSTERVIEWBYID', '/mod/poster/view.php?id=$1', 'course_module'),
-        );
+        ];
     }
 }

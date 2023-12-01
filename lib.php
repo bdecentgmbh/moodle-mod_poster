@@ -22,7 +22,11 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
+use mod_poster\poster;
+
+
+define('POSTER_DISPLAY_PAGE', 0);
+define('POSTER_DISPLAY_INLINE', 1);
 
 /**
  * Returns the information if the module supports a feature
@@ -102,38 +106,13 @@ function poster_update_instance(stdClass $poster) {
 function poster_delete_instance($id) {
     global $DB;
 
-    if (! $poster = $DB->get_record('poster', array('id' => $id))) {
+    if (! $poster = $DB->get_record('poster', ['id' => $id])) {
         return false;
     }
 
-    $DB->delete_records('poster', array('id' => $poster->id));
+    $DB->delete_records('poster', ['id' => $poster->id]);
 
     return true;
-}
-
-/**
- * Adds items into the poster administration block
- *
- * @param settings_navigation $settingsnav The settings navigation object
- * @param navigation_node $node The node to add module settings to
- */
-function poster_extend_settings_navigation(settings_navigation $settingsnav, navigation_node $node) {
-    global $PAGE;
-
-    if ($PAGE->user_allowed_editing()) {
-        $url = $PAGE->url;
-        $url->param('sesskey', sesskey());
-
-        if ($PAGE->user_is_editing()) {
-            $url->param('edit', 'off');
-            $editstring = get_string('turneditingoff', 'core');
-        } else {
-            $url->param('edit', 'on');
-            $editstring = get_string('turneditingon', 'core');
-        }
-
-        $node->add($editstring, $url, navigation_node::TYPE_SETTING);
-    }
 }
 
 /**
@@ -144,7 +123,95 @@ function poster_extend_settings_navigation(settings_navigation $settingsnav, nav
  * @param stdClass $currentcontext Current context of block
  */
 function poster_page_type_list($pagetype, $parentcontext, $currentcontext) {
-    return array(
+    return [
         'mod-poster-view' => get_string('page-mod-poster-view', 'mod_poster'),
-    );
+    ];
+}
+
+
+/**
+ * Given a coursemodule object, this function returns the extra
+ * information needed to print this activity in various places.
+ *
+ * If poster needs to be displayed inline we store additional information
+ * in customdata, so functions {See poster_cm_info_dynamic()} and
+ * {See poster_cm_info_view()} do not need to do DB queries
+ *
+ * @param cm_info $cm
+ * @return cached_cm_info info
+ */
+function poster_get_coursemodule_info($cm) {
+    global $DB;
+    if (!($poster = $DB->get_record('poster', ['id' => $cm->instance],
+        'id, name, display, showdescriptionview, intro, introformat'))) {
+        return null;
+    }
+    $cminfo = new cached_cm_info();
+    $cminfo->name = $poster->name;
+    if ($poster->display == POSTER_DISPLAY_INLINE) {
+        // Prepare poster object to store in customdata.
+        $fdata = new stdClass();
+        $fdata->showdescriptionview = $poster->showdescriptionview;
+        if ($cm->showdescription && strlen(trim($poster->intro))) {
+            $fdata->intro = $poster->intro;
+            if ($poster->introformat != FORMAT_MOODLE) {
+                $fdata->introformat = $poster->introformat;
+            }
+        }
+        $cminfo->customdata = $fdata;
+    } else {
+        if ($cm->showdescription) {
+            // Convert intro to html. Do not filter cached version, filters run at display time.
+            $cminfo->content = format_module_intro('poster', $poster, $cm->id, false);
+        }
+    }
+    return $cminfo;
+}
+
+/**
+ * Sets dynamic information about a course module
+ *
+ * This function is called from cm_info when displaying the module
+ * mod_poster can be displayed inline on course page and therefore have no course link
+ *
+ * @param cm_info $cm
+ */
+function poster_cm_info_dynamic(cm_info $cm) {
+    if ($cm->customdata) {
+        // The field 'customdata' is not empty IF AND ONLY IF we display contens inline.
+        $cm->set_no_view_link();
+    }
+}
+
+/**
+ * Overwrites the content in the course-module object with the poster files list
+ * if poster.display == POSTER_DISPLAY_INLINE
+ *
+ * @param cm_info $cminfo
+ */
+function poster_cm_info_view(cm_info $cminfo) {
+    global $PAGE, $OUTPUT;
+    $poster = new poster($cminfo);
+
+    if ($cminfo->uservisible && $cminfo->customdata && has_capability('mod/poster:view', $cminfo->context)) {
+        // Restore poster object from customdata.
+        // Note the field 'customdata' is not empty IF AND ONLY IF we display contens inline.
+        // Otherwise the content is default.
+        $context = context_module::instance($cminfo->id);
+        $page = new moodle_page();
+        $page->set_context($context);
+        $page->set_cm($cminfo);
+        $poster->setup_page($page);
+        $output = $page->get_renderer('mod_poster');
+        if (!$PAGE->user_is_editing()) {
+            $page->blocks->load_blocks();
+            $content = $output->view_page_content($poster);
+        } else {
+            $url = new moodle_url('/mod/poster/view.php', ['id' => $cminfo->id]);
+            $content = $OUTPUT->render_from_template('mod_poster/edit_label', [
+                'url' => $url->out(),
+            ]);
+        }
+        $cminfo->set_content($content);
+    }
 }

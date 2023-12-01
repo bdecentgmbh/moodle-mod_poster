@@ -23,7 +23,6 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
 
 /**
  * The renderer for poster module
@@ -94,7 +93,7 @@ class mod_poster_renderer extends plugin_renderer_base {
      * @param stdClass $poster The poster instance record
      * @return string
      */
-    protected function view_page_content($poster) {
+    public function view_page_content($poster) {
 
         $out = '';
 
@@ -114,30 +113,30 @@ class mod_poster_renderer extends plugin_renderer_base {
         $cssclassmain .= $haspre ? '' : ' empty-region-mod_poster-pre';
         $cssclassmain .= $haspost ? '' : ' empty-region-mod_poster-post';
 
-        $out .= html_writer::start_div($cssclassmain, array('id' => 'mod_poster-content'));
-        $out .= html_writer::start_div('row');
+        $out .= \html_writer::start_div($cssclassmain, ['id' => 'mod_poster-content']);
+        $out .= \html_writer::start_div('row ml-0 mr-0');
 
         $cssclassgrid = 'col-md-6';
         $cssclasssingle = 'col-md-12';
 
         if ($haspre) {
-            $out .= html_writer::start_div($haspost ? $cssclassgrid : $cssclasssingle);
-            $out .= html_writer::start_div('mod_poster-content-region', array('id' => 'mod_poster-content-region-pre'));
+            $out .= \html_writer::start_div(($haspost ? $cssclassgrid : $cssclasssingle) . ' pl-0 pr-0 ');
+            $out .= \html_writer::start_div('mod_poster-content-region', ['id' => 'mod_poster-content-region-pre']);
             $out .= $this->custom_block_region('mod_poster-pre');
-            $out .= html_writer::end_div();
-            $out .= html_writer::end_div();
+            $out .= \html_writer::end_div();
+            $out .= \html_writer::end_div();
         }
 
         if ($haspost) {
-            $out .= html_writer::start_div($haspre ? $cssclassgrid : $cssclasssingle);
-            $out .= html_writer::start_div('mod_poster-content-region', array('id' => 'mod_poster-content-region-post'));
+            $out .= \html_writer::start_div($haspre ? $cssclassgrid : $cssclasssingle);
+            $out .= \html_writer::start_div('mod_poster-content-region', ['id' => 'mod_poster-content-region-post']);
             $out .= $this->custom_block_region('mod_poster-post');
-            $out .= html_writer::end_div();
-            $out .= html_writer::end_div();
+            $out .= \html_writer::end_div();
+            $out .= \html_writer::end_div();
         }
 
-        $out .= html_writer::end_div();
-        $out .= html_writer::end_div();
+        $out .= \html_writer::end_div();
+        $out .= \html_writer::end_div();
 
         return $out;
     }

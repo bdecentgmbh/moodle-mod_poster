@@ -44,3 +44,10 @@ $string['showdescriptionview'] = 'Display description on view page';
 $string['showdescriptionview_help'] = 'If enabled, the description above will be displayed on the poster page.';
 $string['shownameview'] = 'Display name on view page';
 $string['shownameview_help'] = 'If enabled, the poster name will be displayed as heading on the poster page.';
+
+$string['displaypage'] = 'Display poster on separate page';
+$string['displayinline'] = 'Display poster on course page';
+$string['display'] = 'Choose where to display the poster contents';
+$string['display_help'] = 'This module allows you to display blocks directly on the course page or in a separate page.';
+$string['editlabelmessage'] = 'These blocks should be edited on Poster view page';
+$string['editlabelbutton'] = 'Go to view page';

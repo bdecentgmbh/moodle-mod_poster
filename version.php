@@ -18,14 +18,17 @@
  * Provides meta-information about the plugin.
  *
  * @package     mod_poster
- * @copyright   2015 David Mudrak <david@moodle.com>
+ * @copyright bdecent gmbh 2023 <info@bdecent.de>
+ * based on the work by David Mudrak <david@moodle.com>
+ *
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'mod_poster';
-$plugin->release = '6.0.1';
-$plugin->version = 2021022101;
+$plugin->release = '7.0.0';
+$plugin->version = 2023120100;
 $plugin->requires = 2020061500;
 $plugin->maturity = MATURITY_STABLE;
+$plugin->supported = [401, 403];

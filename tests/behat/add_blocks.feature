@@ -20,18 +20,17 @@ Feature: Adding blocks to the poster page
       | activity    | name                  | intro                         | course  | idnumber  |
       | poster      | Poster 003            | This is a test poster 003.    | C1      | poster003 |
     And I log in as "teacher1"
-    And I am on "Course 001" course homepage
-    And I turn editing mode on
-    And I follow "Poster 003"
-    And I add the "HTML" poster block
-    And I configure the "(new HTML block)" block
+    And I am on "Course 001" course homepage with editing mode on
+    And I am on the "Poster 003" "poster activity" page
+    And I select "html" from the "bui_addblock" singleselect
+    And I configure the "(new text block)" block
     And I set the field "config_title" to "Created in poster context"
     And I set the field "Content" to "This is first HTML block displayed at a poster page"
     And I set the field "Region" to "mod_poster-pre"
     And I press "Save changes"
-    And I am on "Course 001" course homepage
-    And I add the "HTML" block
-    And I configure the "(new HTML block)" block
+    And I am on "Course 001" course homepage with editing mode on
+    And I add the "Text" block
+    And I configure the "(new text block)" block
     And I set the field "config_title" to "Created in course context"
     And I set the field "Content" to "This is second HTML block displayed at a poster page"
     And I set the field "Display on page types" to "Any page"
@@ -41,7 +40,7 @@ Feature: Adding blocks to the poster page
     And I set the field "Display on page types" to "Poster module main page"
     And I set the field "Region" to "mod_poster-pre"
     And I press "Save changes"
-    And I add the "Logged in user" poster block
+    And I select "Logged in user" from the "bui_addblock" singleselect
     And I configure the "Logged in user" block
     And I set the field "Region" to "mod_poster-post"
     And I press "Save changes"
