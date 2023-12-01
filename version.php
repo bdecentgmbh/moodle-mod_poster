@@ -18,7 +18,9 @@
  * Provides meta-information about the plugin.
  *
  * @package     mod_poster
- * @copyright   2015 David Mudrak <david@moodle.com>
+ * @copyright bdecent gmbh 2023 <info@bdecent.de>
+ * based on the work by David Mudrak <david@moodle.com>
+ *
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
