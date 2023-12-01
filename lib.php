@@ -116,31 +116,6 @@ function poster_delete_instance($id) {
 }
 
 /**
- * Adds items into the poster administration block
- *
- * @param settings_navigation $settingsnav The settings navigation object
- * @param navigation_node $node The node to add module settings to
- */
-function poster_extend_settings_navigation(settings_navigation $settingsnav, navigation_node $node) {
-    global $PAGE;
-
-    if ($PAGE->user_allowed_editing()) {
-        $url = $PAGE->url;
-        $url->param('sesskey', sesskey());
-
-        if ($PAGE->user_is_editing()) {
-            $url->param('edit', 'off');
-            $editstring = get_string('turneditingoff', 'core');
-        } else {
-            $url->param('edit', 'on');
-            $editstring = get_string('turneditingon', 'core');
-        }
-
-        $node->add($editstring, $url, navigation_node::TYPE_SETTING);
-    }
-}
-
-/**
  * Return the page type patterns that can be used by blocks
  *
  * @param string $pagetype Current page type

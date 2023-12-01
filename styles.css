@@ -21,3 +21,9 @@
     padding-left: 24px;
     display: block;
 }
+
+/* Make sure the poster blocks content width to available. */
+.course-content .modtype_poster.activity .description .description-inner {
+    width: 100%;
+    margin-top: 15px;
+}

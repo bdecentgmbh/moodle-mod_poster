@@ -114,13 +114,13 @@ class mod_poster_renderer extends plugin_renderer_base {
         $cssclassmain .= $haspost ? '' : ' empty-region-mod_poster-post';
 
         $out .= \html_writer::start_div($cssclassmain, ['id' => 'mod_poster-content']);
-        $out .= \html_writer::start_div('row');
+        $out .= \html_writer::start_div('row ml-0 mr-0');
 
         $cssclassgrid = 'col-md-6';
         $cssclasssingle = 'col-md-12';
 
         if ($haspre) {
-            $out .= \html_writer::start_div($haspost ? $cssclassgrid : $cssclasssingle);
+            $out .= \html_writer::start_div(($haspost ? $cssclassgrid : $cssclasssingle) . ' pl-0 pr-0 ');
             $out .= \html_writer::start_div('mod_poster-content-region', ['id' => 'mod_poster-content-region-pre']);
             $out .= $this->custom_block_region('mod_poster-pre');
             $out .= \html_writer::end_div();
