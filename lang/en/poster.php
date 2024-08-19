@@ -25,6 +25,12 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+$string['display'] = 'Choose where to display the poster contents';
+$string['display_help'] = 'This module allows you to display blocks directly on the course page or in a separate page.';
+$string['displayinline'] = 'Display poster on course page';
+$string['displaypage'] = 'Display poster on separate page';
+$string['editlabelbutton'] = 'Go to view page';
+$string['editlabelmessage'] = 'These blocks should be edited on Poster view page';
 $string['modulename'] = 'Poster';
 $string['modulename_help'] = 'The poster module enables a teacher to make a page out of blocks (such as the HTML block, comments, calendar or RSS feed block), dragging and dropping them to the preferred location.
 
@@ -45,9 +51,4 @@ $string['showdescriptionview_help'] = 'If enabled, the description above will be
 $string['shownameview'] = 'Display name on view page';
 $string['shownameview_help'] = 'If enabled, the poster name will be displayed as heading on the poster page.';
 
-$string['displaypage'] = 'Display poster on separate page';
-$string['displayinline'] = 'Display poster on course page';
-$string['display'] = 'Choose where to display the poster contents';
-$string['display_help'] = 'This module allows you to display blocks directly on the course page or in a separate page.';
-$string['editlabelmessage'] = 'These blocks should be edited on Poster view page';
-$string['editlabelbutton'] = 'Go to view page';
+
