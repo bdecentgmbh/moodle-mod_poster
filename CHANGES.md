@@ -5,7 +5,7 @@
 * Fixed minor coding style issues.
 * Added monologo for Moodle 4.x.
 * Fixed improper use of require_login method instead of require_course_login (resolves #10).
-* New feature: Display block content on course page (based on work by Harald, David und Nicklas @devcamp19 â€” Thanks!).
+* New feature: Display block content on course page (based on work by Harald, David und Nicklas @devcamp19 — Thanks!).
  
 ### 6.0.1 ###
 

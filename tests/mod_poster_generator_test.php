@@ -14,7 +14,6 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
-
 /**
  * Poster activity testcases.
  *
@@ -24,7 +23,6 @@
  */
 namespace mod_poster;
 
-
 /**
  * Poster module generator tests.
  *
@@ -33,13 +31,14 @@ namespace mod_poster;
  * @copyright   2021 bdecent gmbh <https://bdecent.de>
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class mod_poster_generator_test extends \advanced_testcase {
+final class mod_poster_generator_test extends \advanced_testcase {
 
     /**
      * Test {@see mod_poster_generator::create_instance()}.
      * @covers ::create_instance
+     * @return void
      */
-    public function test_create_instance() {
+    public function test_create_instance(): void {
         global $DB;
 
         $this->resetAfterTest();
