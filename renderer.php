@@ -45,45 +45,12 @@ class mod_poster_renderer extends plugin_renderer_base {
             $this->page->theme->addblockposition = BLOCK_ADDBLOCK_POSITION_DEFAULT;
         }
 
+        // The activity header shows the name and, if enabled, the description (see view.php).
         $out = $this->header();
-
-        if ($poster->shownameview) {
-            $out .= $this->view_page_heading($poster);
-        }
-
-        if ($poster->showdescriptionview) {
-            $out .= $this->view_page_description($poster);
-        }
-
         $out .= $this->view_page_content($poster);
         $out .= $this->footer();
 
         return $out;
-    }
-
-    /**
-     * Render the page title at the view.php page
-     *
-     * @param stdClass $poster The poster instance record
-     * @return string
-     */
-    protected function view_page_heading($poster) {
-        return $this->heading(format_string($poster->name), 2, null, 'mod_poster-heading');
-    }
-
-    /**
-     * Render the poster description at the view.php page
-     *
-     * @param stdClass $poster The poster instance record
-     * @return string
-     */
-    protected function view_page_description($poster) {
-
-        if (html_is_blank($poster->intro)) {
-            return '';
-        }
-
-        return $this->box(format_module_intro('poster', $poster, $this->page->cm->id), 'generalbox', 'mod_poster-description');
     }
 
     /**

@@ -28,7 +28,7 @@ defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'mod_poster';
 $plugin->release = '8.0.0';
-$plugin->version = 2025040101;
+$plugin->version = 2026102800;
 $plugin->requires = 2024100700; // Moodle 4.5.
 $plugin->maturity = MATURITY_STABLE;
 $plugin->supported = [405, 503];

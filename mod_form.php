@@ -59,10 +59,6 @@ class mod_poster_mod_form extends moodleform_mod {
             $mform->hardFreeze('display');
         }
 
-        // Add the show name at the view page field.
-        $mform->addElement('advcheckbox', 'shownameview', get_string('shownameview', 'mod_poster'));
-        $mform->addHelpButton('shownameview', 'shownameview', 'mod_poster');
-
         // Add the instruction/description field.
         $this->standard_intro_elements();
 

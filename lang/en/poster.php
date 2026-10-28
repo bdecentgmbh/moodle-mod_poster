@@ -48,5 +48,3 @@ $string['postername'] = 'Name';
 $string['privacy:metadata'] = 'Poster does not store any personal data';
 $string['showdescriptionview'] = 'Display description on view page';
 $string['showdescriptionview_help'] = 'If enabled, the description above will be displayed on the poster page.';
-$string['shownameview'] = 'Display name on view page';
-$string['shownameview_help'] = 'If enabled, the poster name will be displayed as heading on the poster page.';

@@ -40,6 +40,9 @@ require_course_login($course, true, $cm);
 require_capability('mod/poster:view', $PAGE->context);
 
 $poster->setup_page($PAGE);
+if (!$posterdata->showdescriptionview) {
+    $PAGE->activityheader->set_description('');
+}
 
 if ($edit !== null && confirm_sesskey() && $PAGE->user_allowed_editing()) {
     $USER->editing = $edit;

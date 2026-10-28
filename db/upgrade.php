@@ -46,5 +46,18 @@ function xmldb_poster_upgrade($oldversion) {
         // Poster savepoint reached.
         upgrade_mod_savepoint(true, 2023112701, 'poster');
     }
+
+    if ($oldversion < 2026102800) {
+        // Moodle shows the activity name on every view page, so the poster no longer adds it as a heading.
+        $table = new xmldb_table('poster');
+        $field = new xmldb_field('shownameview');
+        if ($dbman->field_exists($table, $field)) {
+            $dbman->drop_field($table, $field);
+        }
+
+        // Poster savepoint reached.
+        upgrade_mod_savepoint(true, 2026102800, 'poster');
+    }
+
     return true;
 }

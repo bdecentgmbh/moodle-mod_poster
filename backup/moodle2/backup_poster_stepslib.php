@@ -43,7 +43,7 @@ class backup_poster_activity_structure_step extends backup_activity_structure_st
 
         // Define the poster root element.
         $poster = new backup_nested_element('poster', ['id'], ['name', 'intro',
-            'introformat', 'timecreated', 'timemodified', 'shownameview', 'showdescriptionview', 'display', ]);
+            'introformat', 'timecreated', 'timemodified', 'showdescriptionview', 'display', ]);
 
         // Define the data source.
         $poster->set_source_table('poster', ['id' => backup::VAR_ACTIVITYID]);
