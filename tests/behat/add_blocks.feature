@@ -40,17 +40,20 @@ Feature: Adding blocks to the poster page
 
   @javascript
   Scenario: Move a block of the course page to the poster page
-    Given I am on "Course 001" course homepage with editing mode on
+    Given I am on the "Course 001" course page logged in as "teacher1"
+    And I turn editing mode on
     And I add the "Text" block to the default region with:
       | Text block title | Created in course context          |
       | Content          | This is a block of the course page |
     And I configure the "Created in course context" block
-    And I set the field "Display on page types" to "Any page"
+    And I set the following fields to these values:
+      | Display on page types | Any page |
     And I press "Save changes"
     And I am on the "Poster 003" "poster activity" page
     And I configure the "Created in course context" block
-    And I set the field "Display on page types" to "Poster module main page"
-    And I set the field "Region" to "mod_poster-pre"
+    And I set the following fields to these values:
+      | Display on page types | Poster module main page |
+      | Region                | mod_poster-pre          |
     And I press "Save changes"
     When I am on the "Poster 003" "poster activity" page logged in as "student1"
     Then I should see "This is a block of the course page" in the "#mod_poster-content-region-pre" "css_element"
