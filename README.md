@@ -1,69 +1,66 @@
-Moodle Poster activity module
-=============================
+# Poster
 
-[![Moodle Plugin CI](https://github.com/mudrd8mz/moodle-mod_poster/actions/workflows/moodle-ci.yml/badge.svg)](https://github.com/mudrd8mz/moodle-mod_poster/actions/workflows/moodle-ci.yml)
+[![Moodle plugin CI](https://github.com/bdecentgmbh/moodle-mod_poster/actions/workflows/moodle-ci.yml/badge.svg)](https://github.com/bdecentgmbh/moodle-mod_poster/actions/workflows/moodle-ci.yml)
 
-Poster is a resource activity module for Moodle. It allows teachers to create a page for their students. What makes this module
-unique is that the contents of the poster page is composed of Moodle blocks (such as HTML blocks, Calendar block, Latest news block
-etc.). It provides yet another place within the course where blocks can be put without polluting the course front page.
+Poster is a Moodle activity that makes a page out of blocks: Text blocks, Comments, Logged in user,
+Recent activity or any other block. Teachers use it as a course dashboard, a project wall or a space
+where students present their work, and keep the course page itself free of side blocks.
 
-Motivation
-----------
+## Features
 
-There are many useful blocks available for Moodle. Typically, they can be only added to the sides of the Moodle pages, or to the
-user's dashboard page (also known as My home page). Sometimes, you may want to keep your course main page quite clean, not cluttered
-with blocks on both sides. In such case, you can put useful blocks into a separate Poster page.
+- **Two columns of blocks**, side by side on wide screens and one below the other on phones. A
+  column without blocks leaves the whole width to the other one.
+- **"Add a block" in each column** (Boost and the themes based on it), so blocks land where they
+  belong. Blocks can be dragged between the columns.
+- **On its own page or on the course page**: a poster can show its blocks right on the course
+  page, like a text and media area.
+- **Description** on the poster page, optional.
+- **Activity completion** when students view the poster.
+- **Backup and restore**, duplicating and importing, with the blocks of the poster.
+- **Activities overview** (Moodle 5): posters are listed with the other resources of the course.
 
-The overall concept is somewhat similar to how pages are created in Mahara - but it is typically the teacher in Moodle who creates
-the Poster for students to view.
+## Requirements
 
-Usage
------
+Moodle 4.5 to 5.3.
 
-To use the module, you should understand how Moodle sticky blocks work. See [Block
-settings](https://docs.moodle.org/en/Block_settings) page for more details.
+## Installation
 
-1. Add the module instance into the course.
-2. Keep the editing mode on.
-3. Add the Moodle blocks you want to display on the poster.
-4. Click the icon to configure the block. Set the block instance so that it is displayed in the context of the
-   poster, on page type _Poster module main page_ (`mod-poster-view`), inside the region `mod_poster-pre` or `mod_poster-post`.
-5. Alternatively, use the drag and drop feature to move the block to the regions at the poster content area.
-6. Note that some blocks must be first added to the course main page first, configured to be displayed at any page and then
-   configured again to be displayed at the poster main page only (this is how block positioning works in Moodle generally).
+1. Download the plugin or clone it into `mod/poster` (`public/mod/poster` from Moodle 5.1).
+2. Go to *Site administration > Notifications* to complete the installation.
 
-The poster can be used as for example:
+The poster has no settings of its own.
 
-* Course wall/dashboard (contact teachers, detailed outline of the course, latest news, comments, ...).
-* Project dashboard (project goals, calendar, comments, people, ...)
-* Research report (goals, methods, results, comments, ...)
+## Documentation
 
-Implementation
---------------
+- [Teacher guide](docs/teacher-guide.md): adding a poster, its blocks and its display
+- [Student guide](docs/student-guide.md)
+- [Administrator guide](docs/admin-guide.md): installation, upgrading, capabilities
+- [Developer guide](docs/developer-guide.md): how the poster works, tests and releases
 
-The Poster module uses not so well known feature of the Moodle blocks architecture. In almost all cases, it is the theme that
-defines regions where plugins can be added to. However in special cases, such as this one, any Moodle plugin can define its custom
-block regions.  Within the context of the Poster module instance, when displaying its view.php page, two extra block regions are
-defined - `mod_poster-pre` and `mod_poster-post`. The Poster module itself is just a tiny wrapper for displaying these two regions
-as its content. Simple and clever.
+With the Documentation Center (`tool_mdocs`) installed, the guides are also offered on the poster
+pages.
 
-The module natively supports responsive layout in bootstrap based themes (both 2.x and 3.x versions).
+## Author and maintainer
 
-Author
-------
+Poster was written by [David Mudrák](https://github.com/mudrd8mz) in 2015, who maintained it up to
+version 6.0.1. Since version 7.0.0 (2023), it is maintained by [bdecent gmbh](https://bdecent.de).
+Thanks to David for creating the poster and handing it over, and to everyone who reported issues
+and contributed.
 
-The Poster module has been written and is currently maintained by David Mudrák <david@moodle.com>
+Issues and pull requests: https://github.com/bdecentgmbh/moodle-mod_poster
 
-Licence
--------
+## License
 
 Copyright (C) 2015 David Mudrák <david@moodle.com>
+Copyright (C) 2023 onwards bdecent gmbh <https://bdecent.de>
 
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as
-published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU
+General Public License as published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
 
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
 
-You should have received a copy of the GNU General Public License along with this program.  If not, see
-<http://www.gnu.org/licenses/>.
+You should have received a copy of the GNU General Public License along with this program. If not,
+see <https://www.gnu.org/licenses/>.

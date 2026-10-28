@@ -31,6 +31,13 @@ $string['displayinline'] = 'Display poster on course page';
 $string['displaypage'] = 'Display poster on separate page';
 $string['editlabelbutton'] = 'Go to view page';
 $string['editlabelmessage'] = 'These blocks should be edited on Poster view page';
+$string['missingblocks'] = 'Missing a block?';
+$string['missingblocks_help'] = 'Some blocks, such as Upcoming events, Calendar or Online users, can only be added to course pages, not to activities. To show one on a poster:
+
+1. Add the block on the course page and configure it: under "Where this block appears", set "Display on page types" to "Any page".
+2. Open the poster and configure the block again: set "Display on page types" to "Poster module main page" and "Region" to mod_poster-pre (left column) or mod_poster-post (right column).
+
+The block then appears on every poster of the course.';
 $string['modulename'] = 'Poster';
 $string['modulename_help'] = 'The poster module enables a teacher to make a page out of blocks (such as the HTML block, comments, calendar or RSS feed block), dragging and dropping them to the preferred location.
 
@@ -48,7 +55,3 @@ $string['postername'] = 'Name';
 $string['privacy:metadata'] = 'Poster does not store any personal data';
 $string['showdescriptionview'] = 'Display description on view page';
 $string['showdescriptionview_help'] = 'If enabled, the description above will be displayed on the poster page.';
-$string['shownameview'] = 'Display name on view page';
-$string['shownameview_help'] = 'If enabled, the poster name will be displayed as heading on the poster page.';
-
-

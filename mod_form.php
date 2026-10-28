@@ -24,7 +24,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once($CFG->dirroot.'/course/moodleform_mod.php');
+require_once($CFG->dirroot . '/course/moodleform_mod.php');
 
 /**
  * Defines the poster instance settings form
@@ -33,13 +33,10 @@ require_once($CFG->dirroot.'/course/moodleform_mod.php');
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class mod_poster_mod_form extends moodleform_mod {
-
     /**
      * Defines the fields of the form
      */
     public function definition() {
-        global $CFG;
-
         $mform = $this->_form;
 
         // Start the general form section.
@@ -52,26 +49,18 @@ class mod_poster_mod_form extends moodleform_mod {
         $mform->addRule('name', get_string('maximumchars', 'core', 255), 'maxlength', 255, 'client');
 
         // Add the option to display the content on the course page.
-        $mform->addElement('select', 'display', get_string('display', 'mod_poster'),
-            [POSTER_DISPLAY_PAGE => get_string('displaypage', 'mod_poster'),
-                POSTER_DISPLAY_INLINE => get_string('displayinline', 'mod_poster'), ]);
+        $mform->addElement('select', 'display', get_string('display', 'mod_poster'), [
+            POSTER_DISPLAY_PAGE => get_string('displaypage', 'mod_poster'),
+            POSTER_DISPLAY_INLINE => get_string('displayinline', 'mod_poster'),
+        ]);
         $mform->addHelpButton('display', 'display', 'mod_poster');
         if (!$this->courseformat->has_view_page()) {
             $mform->setConstant('display', POSTER_DISPLAY_PAGE);
             $mform->hardFreeze('display');
         }
 
-        // Add the show name at the view page field.
-        $mform->addElement('advcheckbox', 'shownameview', get_string('shownameview', 'mod_poster'));
-        $mform->addHelpButton('shownameview', 'shownameview', 'mod_poster');
-
         // Add the instruction/description field.
-        if ($CFG->version >= 2015051100) {
-            // Moodle 2.9.0 and higher use the new API.
-            $this->standard_intro_elements();
-        } else {
-            $this->add_intro_editor();
-        }
+        $this->standard_intro_elements();
 
         // Add the show description at the view page field.
         $mform->addElement('advcheckbox', 'showdescriptionview', get_string('showdescriptionview', 'mod_poster'));

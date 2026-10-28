@@ -22,19 +22,13 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require(__DIR__.'/../../config.php');
+require(__DIR__ . '/../../config.php');
 
 $id = required_param('id', PARAM_INT);
 
 $course = $DB->get_record('course', ['id' => $id], '*', MUST_EXIST);
 
 require_course_login($course, true);
-
-$PAGE->set_pagelayout('incourse');
-$PAGE->set_url('/mod/poster/index.php', ['id' => $course->id]);
-$PAGE->set_title($course->shortname.': '.get_string('modulenameplural', 'mod_poster'));
-$PAGE->set_heading($course->fullname);
-$PAGE->navbar->add(get_string('modulenameplural', 'mod_poster'));
 
 // Trigger instances list viewed event.
 $event = \mod_poster\event\course_module_instance_list_viewed::create([
@@ -43,12 +37,25 @@ $event = \mod_poster\event\course_module_instance_list_viewed::create([
 $event->add_record_snapshot('course', $course);
 $event->trigger();
 
+// Moodle 5.0 and later list the posters with the other resources on the course's activities overview page.
+if (class_exists(\core_courseformat\activityoverviewbase::class)) {
+    \core_courseformat\activityoverviewbase::redirect_to_overview_page($course->id, 'resource');
+}
+
+$PAGE->set_pagelayout('incourse');
+$PAGE->set_url('/mod/poster/index.php', ['id' => $course->id]);
+$PAGE->set_title($course->shortname . ': ' . get_string('modulenameplural', 'mod_poster'));
+$PAGE->set_heading($course->fullname);
+$PAGE->navbar->add(get_string('modulenameplural', 'mod_poster'));
+
 echo $OUTPUT->header();
 echo $OUTPUT->heading(get_string('modulenameplural', 'mod_poster'));
 
 if (!$posters = get_all_instances_in_course('poster', $course)) {
-    notice(get_string('thereareno', 'core', get_string('modulenameplural', 'mod_poster')),
-        new moodle_url('/course/view.php', ['id' => $course->id]));
+    notice(
+        get_string('thereareno', 'core', get_string('modulenameplural', 'mod_poster')),
+        new moodle_url('/course/view.php', ['id' => $course->id])
+    );
 }
 
 $usesections = course_format_uses_sections($course->format);
@@ -58,12 +65,11 @@ $table->attributes['class'] = 'generaltable mod_index';
 
 if ($usesections) {
     $table->head = [
-        get_string('sectionname', 'format_'.$course->format),
+        get_string('sectionname', 'format_' . $course->format),
         get_string('postername', 'mod_poster'),
         get_string('moduleintro', 'core'),
     ];
     $table->align = ['center', 'left', 'left'];
-
 } else {
     $table->head = [
         get_string('lastmodified', 'core'),

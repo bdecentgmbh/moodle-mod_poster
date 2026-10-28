@@ -1,29 +1,24 @@
-#page-mod-poster-view #mod_poster-content {
-    clear: both;
-    padding-left: 0;
-    padding-right: 0;
+/* The block regions of a poster, side by side on wide screens. */
+.mod_poster-columns {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    column-gap: 1rem;
 }
 
-#page-mod-poster-view #mod_poster-content .block.block_adminblock {
-    background-color: white;
-    border: none;
+@media (min-width: 768px) {
+    .mod_poster-columns-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
-#page-mod-poster-view.editing #block-region-mod_poster-pre[data-droptarget="1"],
-#page-mod-poster-view.editing #block-region-mod_poster-post[data-droptarget="1"] {
+/* While editing, frame each column together with its "Add a block" button. */
+.mod_poster-content-editing .mod_poster-content-region {
     border: 2px dashed #888;
     padding: 5px;
     margin-bottom: 5px;
-    min-height: 10em;
 }
 
-.section .poster .mod-indent-outer {
-    padding-left: 24px;
-    display: block;
-}
-
-/* Make sure the poster blocks content width to available. */
-.course-content .modtype_poster.activity .description .description-inner {
-    width: 100%;
-    margin-top: 15px;
+/* Blocks can be dropped into empty columns, too. */
+.mod_poster-content-editing .block-region {
+    min-height: 8em;
 }

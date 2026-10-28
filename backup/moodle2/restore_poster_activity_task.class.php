@@ -25,7 +25,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once($CFG->dirroot.'/mod/poster/backup/moodle2/restore_poster_stepslib.php');
+require_once($CFG->dirroot . '/mod/poster/backup/moodle2/restore_poster_stepslib.php');
 
 /**
  * Defines the steps needed to restore a poster activity.
@@ -34,7 +34,6 @@ require_once($CFG->dirroot.'/mod/poster/backup/moodle2/restore_poster_stepslib.p
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class restore_poster_activity_task extends restore_activity_task {
-
     /**
      * Defines additional restore settings for this activity.
      */

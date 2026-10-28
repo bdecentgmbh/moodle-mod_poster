@@ -37,7 +37,7 @@ define('POSTER_DISPLAY_INLINE', 1);
  */
 function poster_supports($feature) {
 
-    switch($feature) {
+    switch ($feature) {
         case FEATURE_MOD_ARCHETYPE:
             return MOD_ARCHETYPE_RESOURCE;
         case FEATURE_GRADE_HAS_GRADE:
@@ -52,6 +52,8 @@ function poster_supports($feature) {
             return true;
         case FEATURE_SHOW_DESCRIPTION:
             return true;
+        case FEATURE_MOD_PURPOSE:
+            return MOD_PURPOSE_CONTENT;
         default:
             return null;
     }
@@ -128,42 +130,32 @@ function poster_page_type_list($pagetype, $parentcontext, $currentcontext) {
     ];
 }
 
-
 /**
  * Given a coursemodule object, this function returns the extra
  * information needed to print this activity in various places.
  *
- * If poster needs to be displayed inline we store additional information
- * in customdata, so functions {See poster_cm_info_dynamic()} and
- * {See poster_cm_info_view()} do not need to do DB queries
+ * Posters shown on the course page get custom data, so {@see poster_cm_info_dynamic()} and
+ * {@see poster_cm_info_view()} know it without a DB query.
  *
- * @param cm_info $cm
- * @return cached_cm_info info
+ * @param stdClass $cm
+ * @return cached_cm_info|null
  */
 function poster_get_coursemodule_info($cm) {
     global $DB;
-    if (!($poster = $DB->get_record('poster', ['id' => $cm->instance],
-        'id, name, display, showdescriptionview, intro, introformat'))) {
+
+    $poster = $DB->get_record('poster', ['id' => $cm->instance], 'id, name, display, intro, introformat');
+    if (!$poster) {
         return null;
     }
+
     $cminfo = new cached_cm_info();
     $cminfo->name = $poster->name;
+    if ($cm->showdescription) {
+        // Convert intro to html. Do not filter cached version, filters run at display time.
+        $cminfo->content = format_module_intro('poster', $poster, $cm->id, false);
+    }
     if ($poster->display == POSTER_DISPLAY_INLINE) {
-        // Prepare poster object to store in customdata.
-        $fdata = new stdClass();
-        $fdata->showdescriptionview = $poster->showdescriptionview;
-        if ($cm->showdescription && strlen(trim($poster->intro))) {
-            $fdata->intro = $poster->intro;
-            if ($poster->introformat != FORMAT_MOODLE) {
-                $fdata->introformat = $poster->introformat;
-            }
-        }
-        $cminfo->customdata = $fdata;
-    } else {
-        if ($cm->showdescription) {
-            // Convert intro to html. Do not filter cached version, filters run at display time.
-            $cminfo->content = format_module_intro('poster', $poster, $cm->id, false);
-        }
+        $cminfo->customdata = ['display' => POSTER_DISPLAY_INLINE];
     }
     return $cminfo;
 }
@@ -171,47 +163,46 @@ function poster_get_coursemodule_info($cm) {
 /**
  * Sets dynamic information about a course module
  *
- * This function is called from cm_info when displaying the module
- * mod_poster can be displayed inline on course page and therefore have no course link
+ * This function is called from cm_info when displaying the module.
+ * A poster shown on the course page has no link to its own page.
  *
  * @param cm_info $cm
  */
 function poster_cm_info_dynamic(cm_info $cm) {
-    if ($cm->customdata) {
-        // The field 'customdata' is not empty IF AND ONLY IF we display contens inline.
+    if (!empty($cm->customdata)) {
+        // Only posters shown on the course page have custom data.
         $cm->set_no_view_link();
     }
 }
 
 /**
- * Overwrites the content in the course-module object with the poster files list
- * if poster.display == POSTER_DISPLAY_INLINE
+ * Shows the blocks of a poster on the course page, below its description, if the poster is shown there.
  *
- * @param cm_info $cminfo
+ * While editing the course page, the poster shows a link to its own page instead, where its blocks can be edited.
+ *
+ * @param cm_info $cm
  */
-function poster_cm_info_view(cm_info $cminfo) {
+function poster_cm_info_view(cm_info $cm) {
     global $PAGE, $OUTPUT;
-    $poster = new poster($cminfo);
 
-    if ($cminfo->uservisible && $cminfo->customdata && has_capability('mod/poster:view', $cminfo->context)) {
-        // Restore poster object from customdata.
-        // Note the field 'customdata' is not empty IF AND ONLY IF we display contens inline.
-        // Otherwise the content is default.
-        $context = context_module::instance($cminfo->id);
-        $page = new moodle_page();
-        $page->set_context($context);
-        $page->set_cm($cminfo);
-        $poster->setup_page($page);
-        $output = $page->get_renderer('mod_poster');
-        if (!$PAGE->user_is_editing()) {
-            $page->blocks->load_blocks();
-            $content = $output->view_page_content($poster);
-        } else {
-            $url = new moodle_url('/mod/poster/view.php', ['id' => $cminfo->id]);
-            $content = $OUTPUT->render_from_template('mod_poster/edit_label', [
-                'url' => $url->out(),
-            ]);
-        }
-        $cminfo->set_content($content);
+    // Only posters shown on the course page have custom data.
+    if (empty($cm->customdata) || !$cm->uservisible || !has_capability('mod/poster:view', $cm->context)) {
+        return;
     }
+
+    $content = $cm->get_formatted_content(['overflowdiv' => true, 'noclean' => true]);
+    if ($PAGE->user_is_editing()) {
+        $url = new moodle_url('/mod/poster/view.php', ['id' => $cm->id]);
+        $content .= $OUTPUT->render_from_template('mod_poster/edit_label', ['url' => $url->out(false)]);
+    } else {
+        // The blocks belong to the poster's own page, so they are loaded and rendered on a page of its own.
+        $poster = new poster($cm);
+        $page = new moodle_page();
+        $page->set_context($cm->context);
+        $page->set_cm($cm);
+        $poster->setup_page($page);
+        $page->blocks->load_blocks();
+        $content .= $page->get_renderer('mod_poster')->view_page_content($poster->get_settings());
+    }
+    $cm->set_content($content, true);
 }

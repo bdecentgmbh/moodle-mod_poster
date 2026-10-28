@@ -20,10 +20,7 @@ Feature: Adding poster activity
       | activity    | name                  | intro                         | course  | idnumber  | showdescriptionview |
       | poster      | Poster 001            | This is a test poster 001.    | C1      | poster001 | 1                   |
       | poster      | Poster 002            | This is a test poster 002.    | C1      | poster002 | 0                   |
-    When I log in as "student1"
-    And I am on "Course 001" course homepage
-    And I follow "Poster 001"
-    Then I should see "This is a test poster 001." in the "#mod_poster-description" "css_element"
-    And I am on "Course 001" course homepage
-    And I follow "Poster 002"
-    And "#mod_poster-description" "css_element" should not exist
+    When I am on the "Poster 001" "poster activity" page logged in as "student1"
+    Then I should see "This is a test poster 001." in the "region-main" "region"
+    And I am on the "Poster 002" "poster activity" page
+    And I should not see "This is a test poster 002."
