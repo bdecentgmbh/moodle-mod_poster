@@ -30,18 +30,23 @@ $course = $DB->get_record('course', ['id' => $id], '*', MUST_EXIST);
 
 require_course_login($course, true);
 
-$PAGE->set_pagelayout('incourse');
-$PAGE->set_url('/mod/poster/index.php', ['id' => $course->id]);
-$PAGE->set_title($course->shortname . ': ' . get_string('modulenameplural', 'mod_poster'));
-$PAGE->set_heading($course->fullname);
-$PAGE->navbar->add(get_string('modulenameplural', 'mod_poster'));
-
 // Trigger instances list viewed event.
 $event = \mod_poster\event\course_module_instance_list_viewed::create([
     'context' => context_course::instance($course->id),
 ]);
 $event->add_record_snapshot('course', $course);
 $event->trigger();
+
+// Moodle 5.0 and later list the posters with the other resources on the course's activities overview page.
+if (class_exists(\core_courseformat\activityoverviewbase::class)) {
+    \core_courseformat\activityoverviewbase::redirect_to_overview_page($course->id, 'resource');
+}
+
+$PAGE->set_pagelayout('incourse');
+$PAGE->set_url('/mod/poster/index.php', ['id' => $course->id]);
+$PAGE->set_title($course->shortname . ': ' . get_string('modulenameplural', 'mod_poster'));
+$PAGE->set_heading($course->fullname);
+$PAGE->navbar->add(get_string('modulenameplural', 'mod_poster'));
 
 echo $OUTPUT->header();
 echo $OUTPUT->heading(get_string('modulenameplural', 'mod_poster'));
