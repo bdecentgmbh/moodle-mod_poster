@@ -60,7 +60,8 @@ class poster {
     public function __construct($cm) {
         global $DB;
         $this->settings = $DB->get_record('poster', ['id' => $cm->instance], '*', MUST_EXIST);
-        $this->course = $DB->get_record('course', ['id' => $cm->course], '*', MUST_EXIST);
+        // No query when it is the current course, as on the course page.
+        $this->course = get_course($cm->course);
         $this->cm = $cm;
     }
 
