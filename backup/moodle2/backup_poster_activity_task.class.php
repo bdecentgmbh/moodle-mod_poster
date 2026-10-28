@@ -25,7 +25,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once($CFG->dirroot.'/mod/poster/backup/moodle2/backup_poster_stepslib.php');
+require_once($CFG->dirroot . '/mod/poster/backup/moodle2/backup_poster_stepslib.php');
 
 /**
  * Defines the settings and steps to perform a backup of the poster.
@@ -34,7 +34,6 @@ require_once($CFG->dirroot.'/mod/poster/backup/moodle2/backup_poster_stepslib.ph
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class backup_poster_activity_task extends backup_activity_task {
-
     /**
      * Defines activity specific settings to be added to the common ones.
      *
@@ -74,11 +73,11 @@ class backup_poster_activity_task extends backup_activity_task {
         $base = preg_quote($CFG->wwwroot, '/');
 
         // Link to the list of posters.
-        $search = '/('.$base.'\/mod\/poster\/index.php\?id\=)([0-9]+)/';
+        $search = '/(' . $base . '\/mod\/poster\/index.php\?id\=)([0-9]+)/';
         $content = preg_replace($search, '$@POSTERINDEX*$2@$', $content);
 
         // Link to a poster view by cmid.
-        $search = '/('.$base.'\/mod\/poster\/view.php\?id\=)([0-9]+)/';
+        $search = '/(' . $base . '\/mod\/poster\/view.php\?id\=)([0-9]+)/';
         $content = preg_replace($search, '$@POSTERVIEWBYID*$2@$', $content);
 
         return $content;

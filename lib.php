@@ -37,7 +37,7 @@ define('POSTER_DISPLAY_INLINE', 1);
  */
 function poster_supports($feature) {
 
-    switch($feature) {
+    switch ($feature) {
         case FEATURE_MOD_ARCHETYPE:
             return MOD_ARCHETYPE_RESOURCE;
         case FEATURE_GRADE_HAS_GRADE:
@@ -144,8 +144,13 @@ function poster_page_type_list($pagetype, $parentcontext, $currentcontext) {
  */
 function poster_get_coursemodule_info($cm) {
     global $DB;
-    if (!($poster = $DB->get_record('poster', ['id' => $cm->instance],
-        'id, name, display, showdescriptionview, intro, introformat'))) {
+    if (
+        !($poster = $DB->get_record(
+            'poster',
+            ['id' => $cm->instance],
+            'id, name, display, showdescriptionview, intro, introformat'
+        ))
+    ) {
         return null;
     }
     $cminfo = new cached_cm_info();

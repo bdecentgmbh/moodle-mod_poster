@@ -36,7 +36,6 @@ use completion_info;
  * @package mod_poster
  */
 class poster {
-
     /**
      * @var mixed|object|false fetched from get_record.
      */
@@ -90,7 +89,7 @@ class poster {
      */
     public function setup_page(\moodle_page &$page) {
         $page->set_url('/mod/poster/view.php', ['id' => $this->cm->id]);
-        $page->set_title($this->course->shortname.': '.$this->settings->name);
+        $page->set_title($this->course->shortname . ': ' . $this->settings->name);
         $page->set_heading($this->course->fullname);
         $page->set_activity_record($this->settings);
         // Define the custom block regions we want to use at the poster view page.
@@ -118,5 +117,4 @@ class poster {
         $completion = new completion_info($this->course);
         $completion->set_module_viewed($this->cm);
     }
-
 }

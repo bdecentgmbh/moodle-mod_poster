@@ -25,8 +25,8 @@
 
 use mod_poster\poster;
 
-require(__DIR__.'/../../config.php');
-require_once($CFG->libdir.'/completionlib.php');
+require(__DIR__ . '/../../config.php');
+require_once($CFG->libdir . '/completionlib.php');
 
 $cmid = required_param('id', PARAM_INT);
 $edit = optional_param('edit', null, PARAM_BOOL);

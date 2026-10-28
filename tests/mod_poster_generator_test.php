@@ -32,7 +32,6 @@ namespace mod_poster;
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 final class mod_poster_generator_test extends \advanced_testcase {
-
     /**
      * Test {@see mod_poster_generator::create_instance()}.
      * @covers ::create_instance

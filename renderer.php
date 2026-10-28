@@ -31,7 +31,6 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class mod_poster_renderer extends plugin_renderer_base {
-
     /**
      * Render the poster main view page (view.php)
      *
