@@ -23,7 +23,6 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-
 /**
  * The renderer for poster module
  *
@@ -40,9 +39,9 @@ class mod_poster_renderer extends plugin_renderer_base {
     public function view_page($poster) {
 
         if ($this->page->user_allowed_editing()) {
+            // The theme's own edit switch replaces this button, but themes without one still need it.
             $this->page->set_button($this->edit_button($this->page->url));
             $this->page->blocks->set_default_region('mod_poster-pre');
-            $this->page->theme->addblockposition = BLOCK_ADDBLOCK_POSITION_DEFAULT;
         }
 
         // The activity header shows the name and, if enabled, the description (see view.php).
@@ -54,56 +53,43 @@ class mod_poster_renderer extends plugin_renderer_base {
     }
 
     /**
-     * Render the poster content at the view.php page
+     * Render the poster content: its block regions, side by side
+     *
+     * Also used to show the poster on the course page.
      *
      * @param stdClass $poster The poster instance record
      * @return string
      */
     public function view_page_content($poster) {
+        $editing = $this->page->user_can_edit_blocks() && $this->page->user_is_editing();
+        // Themes with the "Add a block" button in the block drawer (Boost and its children) get one in each column,
+        // so blocks are added where they belong. Other themes show their own "Add a block" block in the first column.
+        $addblockbuttons = $editing && ($this->page->theme->addblockposition ?? null) == BLOCK_ADDBLOCK_POSITION_FLATNAV;
 
-        $out = '';
-
-        if ($this->page->user_can_edit_blocks() && $this->page->user_is_editing()) {
-            $haspre = true;
-            $haspost = true;
-        } else {
-            $haspre = $this->page->blocks->region_has_content('mod_poster-pre', $this);
-            $haspost = $this->page->blocks->region_has_content('mod_poster-post', $this);
+        $regions = [];
+        $classes = [];
+        foreach (['pre', 'post'] as $suffix) {
+            $region = 'mod_poster-' . $suffix;
+            if (!$editing && !$this->page->blocks->region_has_content($region, $this)) {
+                $classes[] = 'empty-region-' . $region;
+                continue;
+            }
+            $regions[] = [
+                'suffix' => $suffix,
+                'addblockbutton' => $addblockbuttons ? $this->addblockbutton($region) : '',
+                'blocks' => $this->custom_block_region($region),
+            ];
         }
 
-        if (!$haspre && !$haspost) {
-            return $out;
+        if (!$regions) {
+            return '';
         }
 
-        $cssclassmain = '';
-        $cssclassmain .= $haspre ? '' : ' empty-region-mod_poster-pre';
-        $cssclassmain .= $haspost ? '' : ' empty-region-mod_poster-post';
-
-        $out .= \html_writer::start_div($cssclassmain, ['id' => 'mod_poster-content']);
-        $out .= \html_writer::start_div('row ml-0 mr-0');
-
-        $cssclassgrid = 'col-md-6';
-        $cssclasssingle = 'col-md-12';
-
-        if ($haspre) {
-            $out .= \html_writer::start_div(($haspost ? $cssclassgrid : $cssclasssingle) . ' pl-0 pr-0 ');
-            $out .= \html_writer::start_div('mod_poster-content-region', ['id' => 'mod_poster-content-region-pre']);
-            $out .= $this->custom_block_region('mod_poster-pre');
-            $out .= \html_writer::end_div();
-            $out .= \html_writer::end_div();
-        }
-
-        if ($haspost) {
-            $out .= \html_writer::start_div($haspre ? $cssclassgrid : $cssclasssingle);
-            $out .= \html_writer::start_div('mod_poster-content-region', ['id' => 'mod_poster-content-region-post']);
-            $out .= $this->custom_block_region('mod_poster-post');
-            $out .= \html_writer::end_div();
-            $out .= \html_writer::end_div();
-        }
-
-        $out .= \html_writer::end_div();
-        $out .= \html_writer::end_div();
-
-        return $out;
+        return $this->render_from_template('mod_poster/content', [
+            'classes' => implode(' ', $classes),
+            'columns' => count($regions),
+            'regions' => $regions,
+            'missingblockshelp' => $editing ? $this->help_icon('missingblocks', 'mod_poster', true) : '',
+        ]);
     }
 }
