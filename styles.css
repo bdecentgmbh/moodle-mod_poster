@@ -11,10 +11,14 @@
     }
 }
 
-/* While editing, show where blocks can be dropped, also in empty columns. */
-.editing .mod_poster-content .block-region[data-droptarget="1"] {
+/* While editing, frame each column together with its "Add a block" button. */
+.mod_poster-content-editing .mod_poster-content-region {
     border: 2px dashed #888;
     padding: 5px;
     margin-bottom: 5px;
-    min-height: 10em;
+}
+
+/* Blocks can be dropped into empty columns, too. */
+.mod_poster-content-editing .block-region {
+    min-height: 8em;
 }

@@ -87,9 +87,10 @@ class mod_poster_renderer extends plugin_renderer_base {
 
         return $this->render_from_template('mod_poster/content', [
             'classes' => implode(' ', $classes),
+            'editing' => $editing,
             'columns' => count($regions),
             'regions' => $regions,
-            'missingblockshelp' => $editing ? $this->help_icon('missingblocks', 'mod_poster', true) : '',
+            'missingblockshelp' => $editing ? $this->help_icon('missingblocks', 'mod_poster') : '',
         ]);
     }
 }

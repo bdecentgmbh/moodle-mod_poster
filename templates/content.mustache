@@ -21,6 +21,7 @@
 
     Context variables required for this template:
     * classes - Extra CSS classes of the poster content, e.g. for empty regions
+    * editing - Whether the blocks are being edited
     * columns - The number of regions shown (1 or 2)
     * regions - The regions shown: suffix (pre or post), addblockbutton (HTML) and blocks (HTML)
 
@@ -30,6 +31,7 @@
     Example context (json):
     {
         "classes": "",
+        "editing": false,
         "columns": 2,
         "regions": [
             {"suffix": "pre", "addblockbutton": "", "blocks": "<aside class=\"block-region\">Blocks</aside>"},
@@ -38,9 +40,9 @@
         "missingblockshelp": ""
     }
 }}
-<div id="mod_poster-content" class="mod_poster-content {{classes}}">
+<div id="mod_poster-content" class="mod_poster-content {{#editing}}mod_poster-content-editing{{/editing}} {{classes}}">
     {{#missingblockshelp}}
-        <p class="mod_poster-missingblocks small">{{{missingblockshelp}}}</p>
+        <p class="mod_poster-missingblocks small">{{#str}} missingblocks, mod_poster {{/str}} {{{missingblockshelp}}}</p>
     {{/missingblockshelp}}
     <div class="mod_poster-columns mod_poster-columns-{{columns}}">
         {{#regions}}
